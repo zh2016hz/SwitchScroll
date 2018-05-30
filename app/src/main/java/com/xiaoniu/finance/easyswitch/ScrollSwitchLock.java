@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Scroller;
 import android.widget.Toast;
 
 /**
@@ -21,6 +22,7 @@ public class ScrollSwitchLock extends View {
 
     private Bitmap mSwicth;
     private Paint mPaint;
+    private Scroller mScroller;
 
     public ScrollSwitchLock(Context context) {
         this(context, null);
@@ -37,6 +39,7 @@ public class ScrollSwitchLock extends View {
     private void init() {
         mSwicth = BitmapFactory.decodeResource(getResources(), R.drawable.switchs);
         mPaint = new Paint();
+        mScroller = new Scroller(getContext());
     }
 
     @Override
@@ -67,12 +70,16 @@ public class ScrollSwitchLock extends View {
                 float x1 = event.getRawX();
                 if (x1 > mSwicth.getWidth() / 2 && x1 < getWidth() - mSwicth.getWidth() / 2) {
                     scrollTo((int) -x1 + mSwicth.getWidth() / 2, 0);
+
+
                 }
                 break;
             case MotionEvent.ACTION_UP:
                 float rawX = event.getRawX();
                 if(rawX<getWidth()-mSwicth.getWidth()/2){
-                    scrollTo(0,0);
+//                    scrollTo(0,0);
+                    mScroller.startScroll(getScrollX(),0,-getScrollX(),0,1000);
+                    invalidate();
                 }else {
                     Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
                 }
@@ -80,5 +87,14 @@ public class ScrollSwitchLock extends View {
         }
 
         return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        if(mScroller.computeScrollOffset()){
+            scrollTo(mScroller.getCurrX(),0);
+            invalidate();
+        }
+
     }
 }

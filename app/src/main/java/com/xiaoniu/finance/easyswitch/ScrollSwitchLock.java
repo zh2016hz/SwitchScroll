@@ -23,6 +23,8 @@ public class ScrollSwitchLock extends View {
     private Bitmap mSwicth;
     private Paint mPaint;
     private Scroller mScroller;
+    private ISwicthLockListner listener;
+
 
     public ScrollSwitchLock(Context context) {
         this(context, null);
@@ -76,25 +78,35 @@ public class ScrollSwitchLock extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 float rawX = event.getRawX();
-                if(rawX<getWidth()-mSwicth.getWidth()/2){
+                if (rawX < getWidth() - mSwicth.getWidth() / 2) {
 //                    scrollTo(0,0);
-                    mScroller.startScroll(getScrollX(),0,-getScrollX(),0,1000);
+                    mScroller.startScroll(getScrollX(), 0, -getScrollX(), 0, 1000);
                     invalidate();
-                }else {
+                } else {
                     Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+                    if (listener != null) {
+                        listener.switchTurnOn();
+                    }
                 }
                 break;
         }
-
         return true;
     }
 
     @Override
     public void computeScroll() {
-        if(mScroller.computeScrollOffset()){
-            scrollTo(mScroller.getCurrX(),0);
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(mScroller.getCurrX(), 0);
             invalidate();
         }
 
+    }
+
+    public interface ISwicthLockListner {
+        void switchTurnOn();
+    }
+
+    public void setSwitchChanged(ISwicthLockListner l) {
+        this.listener = l;
     }
 }

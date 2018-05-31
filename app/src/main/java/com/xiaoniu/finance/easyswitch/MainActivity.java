@@ -1,5 +1,6 @@
 package com.xiaoniu.finance.easyswitch;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
             public void changeSwitchStatus(boolean flag) {
                 String switchState = flag ? "开关打开" : "开关关闭";
                 Toast.makeText(MainActivity.this, switchState, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this,DownLoadService.class);
+                if(flag){
+                    startService(intent);
+                }else {
+                    stopService(intent);
+                }
             }
         });
         mSwitchScroll.setSwitchChanged(new ScrollSwitchLock.ISwicthLockListner() {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <com.xiaoniu.finance.easyswitch.ScrollSwitch
+        android:id="@+id/switch_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <com.xiaoniu.finance.easyswitch.ScrollSwitchLock
+        android:id="@+id/scroll_lock"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#22000000"/>
+
+    <com.xiaoniu.finance.easyswitch.ViewGroupChanged
+        android:id="@+id/group"
+        android:layout_width="400dp"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:background="#66ff0000"/>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:background="#6600ff00"/>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:background="#440000ff"/>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:background="#660ff1f0"/>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:background="#66ff3fee"/>
+    </com.xiaoniu.finance.easyswitch.ViewGroupChanged>
+
+    <FrameLayout
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+</LinearLayout>

@@ -67,6 +67,7 @@ public class ViewGroupChanged extends ViewGroup {
 
                 getChildAt(i).layout(left, top, right, button);
                 top = button;
+
             }
 
 
